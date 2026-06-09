@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Hegedűs Bt.</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+    </head>
+    <body class="is-preload">
+
+        <div id="wrapper">
+
+            <div id="main">
+                <div class="inner">
+
+                    <header class="main">
+                        <h1>Lépjen velünk kapcsolatba!</h1>
+                    </header>
+
+                    <p>
+                        Kérdése van színpadtechnikával, világítással vagy egy közelgő rendezvény biztosításával kapcsolatban? 
+                        Kérjen tőlünk egyedi árajánlatot! Jászberényi telephelyünkről az ország bármely pontjára kiszállunk, 
+                        hogy biztosítsuk eseménye tökéletes technikai hátterét.
+                    </p>
+
+                    <div class="row">
+                        
+                        <div class="col-8 col-12-small">
+                            <h3>Írjon nekünk üzenetet</h3>
+                            <form method="post" action="#">
+                                <div class="row gtr-uniform">
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="text" name="name" id="name" value="" placeholder="Az Ön neve" required />
+                                    </div>
+                                    <div class="col-6 col-12-xsmall">
+                                        <input type="email" name="email" id="email" value="" placeholder="E-mail címe" required />
+                                    </div>
+                                    <div class="col-12">
+                                        <input type="text" name="subject" id="subject" value="" placeholder="Rendezvény típusa / Tárgy" />
+                                    </div>
+                                    <div class="col-12">
+                                        <textarea name="message" id="message" placeholder="Írja meg nekünk, miben segíthetünk..." rows="6" required></textarea>
+                                    </div>
+                                    <div class="col-12">
+                                        <ul class="actions">
+                                            <li><input type="submit" value="Üzenet elküldése" class="primary" /></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="col-4 col-12-small">
+                            <h3>Cégadatok</h3>
+                            <ul class="alt">
+                                <li>
+                                    <strong>Cégnév:</strong><br>
+                                    Hegedűs Bt.
+                                </li>
+                                <li>
+                                    <strong>Telephely:</strong><br>
+                                    5100 Jászberény
+                                </li>
+                                <li>
+                                    <strong>Telefonszám:</strong><br>
+                                    <a href="tel:+36202925748">+36 30 123 4567</a>
+                                </li>
+                                <li>
+                                    <strong>E-mail cím:</strong><br>
+                                    <a href="mailto:hegedusgergo001@gmail.com">hegedusgergo001@gmail.com</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+
+                </div>
+										<div id="sidebar-container"></div>
+            </div>
+
+
+
+        </div>
+
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+
+				<script>
+			// Betölti a sidebar.html tartalmát a konténerbe
+			fetch('sidebar.html')
+				.then(response => response.text())
+				.then(data => {
+					document.getElementById('sidebar-container').innerHTML = data;
+				})
+				.catch(error => console.error('Hiba a sidebar betöltésekor:', error));
+		</script>
+    </body>
+</html>

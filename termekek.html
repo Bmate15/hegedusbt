@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Hegedűs Bt.</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+    </head>
+    <body class="is-preload">
+
+        <div id="wrapper">
+
+            <div id="main">
+                <div class="inner">
+
+                    <section>
+                        <header class="major">
+                            <h2>Termékek</h2>
+                        </header>
+                        <div class="posts">
+                            <article>
+                                <a class="image"><img src="images/pic01.jpg" alt="" /></a>
+                                <h3>lampa a</h3>
+                                <p>lampa a szöveg 23db van ilyen markajuuu wowowooo.</p>
+                                <a href="mailto:hegedusgergo001@gmail.com?subject=Árajánlatkérés%20-%20Hegedűs%20Bt.&body=Tisztelt%20Hegedűs%20Bt.!%0D%0A%0D%0ASzeretnék%20árajánlatot%20kérni%20a%20következő%20szolgáltatásra:%20" class="button primary">Árajánlatot kérek</a>
+                            </article>
+                            <article>
+                                <a class="image"><img src="images/pic02.jpg" alt="" /></a>
+                                <h3>lampa b</h3>
+                                <p>ez meg forog is</p>
+                                <a href="mailto:hegedusgergo001@gmail.com?subject=Árajánlatkérés%20-%20Hegedűs%20Bt.&body=Tisztelt%20Hegedűs%20Bt.!%0D%0A%0D%0ASzeretnék%20árajánlatot%20kérni%20a%20következő%20szolgáltatásra:%20" class="button primary">Árajánlatot kérek</a>
+                            </article>
+                            <article>
+                                <a class="image"><img src="images/pic03.jpg" alt="" /></a>
+                                <h3>diszkogomb</h3>
+                                <p>kell egy komoj hangulat</p>
+                                <a href="mailto:hegedusgergo001@gmail.com?subject=Árajánlatkérés%20-%20Hegedűs%20Bt.&body=Tisztelt%20Hegedűs%20Bt.!%0D%0A%0D%0ASzeretnék%20árajánlatot%20kérni%20a%20következő%20szolgáltatásra:%20" class="button primary">Árajánlatot kérek</a>
+                            </article>
+                            <article>
+                                <a class="image"><img src="images/pic04.jpg" alt="" /></a>
+                                <h3>mehsejt</h3>
+                                <p>ezek vannak</p>
+                                <a href="mailto:hegedusgergo001@gmail.com?subject=Árajánlatkérés%20-%20Hegedűs%20Bt.&body=Tisztelt%20Hegedűs%20Bt.!%0D%0A%0D%0ASzeretnék%20árajánlatot%20kérni%20a%20következő%20szolgáltatásra:%20" class="button primary">Árajánlatot kérek</a>
+                            </article>
+                        </div>
+                    </section>
+
+                </div>
+				<div id="sidebar-container"></div>
+            </div>  
+
+           
+        </div> <div id="image-modal" class="modal">
+            <span class="close">&times;</span>
+            <img class="modal-content" id="full-image">
+        </div>
+
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+
+		<script>
+			// Betölti a sidebar.html tartalmát a konténerbe
+			fetch('sidebar.html')
+				.then(response => response.text())
+				.then(data => {
+					document.getElementById('sidebar-container').innerHTML = data;
+				})
+				.catch(error => console.error('Hiba a sidebar betöltésekor:', error));
+		</script>
+
+        <script>
+            $(document).ready(function(){
+                // Amikor rákattintanak egy termék képére
+                $('#main .posts article .image img').on('click', function(e){
+                    e.preventDefault(); // Megakadályozzuk, hogy felugorjon az oldal tetejére
+                    var src = $(this).attr('src'); // Kinyerjük a kép URL-jét
+                    $('#full-image').attr('src', src); // Átadjuk a rejtett nagy képnek
+                    $('#image-modal').fadeIn(300); // Megjelenítjük a sötét hátteret
+                });
+
+                // Bezárás, ha az X-re vagy a sötét háttérre kattintanak
+                $('.modal .close, .modal').on('click', function(e){
+                    if (e.target !== document.getElementById('full-image')) {
+                        $('#image-modal').fadeOut(300); // Eltüntetjük
+                    }
+                });
+            });
+        </script>
+
+    </body>
+</html>

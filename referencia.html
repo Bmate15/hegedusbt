@@ -1,0 +1,154 @@
+<!DOCTYPE HTML>
+<html>
+    <head>
+        <title>Hegedűs Bt.</title>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+        <link rel="stylesheet" href="assets/css/main.css" />
+    </head>
+    <body class="is-preload">
+
+        <div id="wrapper">
+
+            <div id="main">
+                <div class="inner">
+
+                    <section>
+                        <header class="major">
+                            <h2>Referenciák</h2>
+                        </header>
+                        
+                        <div class="references-layout">
+                            
+                            <article>
+                                <a class="image"><img src="images/eskuvo/eskuvo_borito.jpg" alt="" /></a>
+                                
+                                <img src="images/eskuvo/eskuvo1.jpg" style="display: none;" alt="" />
+                                <img src="images/eskuvo/images.jpg" style="display: none;" alt="" />
+                                
+                                <div class="content">
+                                    <h3>Egy komoly esküvő</h3>
+                                    <p>A ricoval volt.</p>
+                                </div>
+                            </article>
+                            
+                            <article>
+                                <a class="image"><img src="images/kupa/kupa_borito.jpg" alt="" /></a>
+
+								<img src="images/kupa/kupa1.jpg" style="display: none;" alt="" />
+                                <img src="images/kupa/kupa2.jpg" style="display: none;" alt="" />
+                                <div class="content">
+                                    <h3>2025-ös kupa</h3>
+                                    <p>Az komolyabb volt. </p>
+                                </div>
+                            </article>
+                            
+                            <article>
+                                <a class="image"><img src="images/legeny/pic08.jpg" alt="" /></a>
+                                <div class="content">
+                                    <h3>Baltazár legénybúcsú</h3>
+                                    <p>Az pedig felejthetetlen.</p>
+                                </div>
+                            </article>
+                            
+                            <article>
+                                <a class="image"><img src="images/sziget/pic05.jpg" alt="" /></a>
+                                <div class="content">
+                                    <h3>Szigetfesztivál 2029???</h3>
+                                    <p>????</p>
+                                </div>
+                            </article>
+
+                        </div>
+                    </section>
+
+                </div>
+				<div id="sidebar-container"></div>
+
+            </div>
+
+            
+
+        </div> <div id="image-modal" class="modal">
+            <span class="close">&times;</span>
+            <span class="prev">&#10094;</span> <span class="next">&#10095;</span> <img class="modal-content" id="full-image">
+        </div>
+
+        <script src="assets/js/jquery.min.js"></script>
+        <script src="assets/js/browser.min.js"></script>
+        <script src="assets/js/breakpoints.min.js"></script>
+        <script src="assets/js/util.js"></script>
+        <script src="assets/js/main.js"></script>
+
+			<script>
+				// Betölti a sidebar.html tartalmát a konténerbe
+				fetch('sidebar.html')
+					.then(response => response.text())
+					.then(data => {
+						document.getElementById('sidebar-container').innerHTML = data;
+					})
+					.catch(error => console.error('Hiba a sidebar betöltésekor:', error));
+			</script>
+
+        <script>
+            $(document).ready(function(){
+                var currentGallery = []; 
+                var currentIndex = 0;    
+
+                // Amikor rákattintanak a referencián belül bármilyen képre
+                $('#main .references-layout article img').on('click', function(e){
+                    e.preventDefault(); 
+                    currentGallery = []; 
+                    
+                    // Összegyűjtjük az adott <article> összes képét (a rejtetteket is)
+                    $(this).closest('article').find('img').each(function() {
+                        currentGallery.push($(this).attr('src'));
+                    });
+
+                    var clickedSrc = $(this).attr('src'); 
+                    currentIndex = currentGallery.indexOf(clickedSrc); 
+                    
+                    // Ha csak 1 kép van, elrejtjük a nyilakat, ha több, megmutatjuk
+                    if(currentGallery.length <= 1) {
+                        $('.modal .prev, .modal .next').hide();
+                    } else {
+                        $('.modal .prev, .modal .next').show();
+                    }
+
+                    $('#full-image').attr('src', currentGallery[currentIndex]); 
+                    $('#image-modal').fadeIn(300); 
+                });
+
+                // Lapozás JOBBRA
+                $('.modal .next').on('click', function() {
+                    currentIndex++;
+                    if(currentIndex >= currentGallery.length) currentIndex = 0; 
+                    
+                    $('#full-image').fadeOut(150, function() {
+                        $(this).attr('src', currentGallery[currentIndex]).fadeIn(150);
+                    });
+                });
+
+                // Lapozás BALRA
+                $('.modal .prev').on('click', function() {
+                    currentIndex--;
+                    if(currentIndex < 0) currentIndex = currentGallery.length - 1; 
+                    
+                    $('#full-image').fadeOut(150, function() {
+                        $(this).attr('src', currentGallery[currentIndex]).fadeIn(150);
+                    });
+                });
+
+                // Bezárás
+                $('.modal .close, .modal').on('click', function(e){
+                    if (e.target !== document.getElementById('full-image') && 
+                        !$(e.target).hasClass('prev') && 
+                        !$(e.target).hasClass('next')) {
+                        $('#image-modal').fadeOut(300); 
+                    }
+                });
+            });
+        </script>
+
+    </body>
+</html>
